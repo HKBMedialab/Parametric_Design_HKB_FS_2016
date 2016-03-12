@@ -17,7 +17,7 @@ float posx=0;
 float posy=0;
 float rectsize=30;
 float lineheight=40;
-int leading=20;
+int leading=10;
 
 
 //Sortierter String, gegen den abgeglichen werden kann 
@@ -32,7 +32,7 @@ void setup() {
   background(0);
 
   lines = loadStrings("text.txt");
-  joinedText = join(lines, " "); 
+  joinedText = join(lines, '\n'); 
 
   // Font stuff
   font = loadFont ("HelveticaNeue-48.vlw");
@@ -71,7 +71,7 @@ void draw() {
     fill(0);
     text(c, posx, posy);
     posx+=textWidth(c);
-    if (posx>width-textWidth(c)) { // umbruch vor Canvasende
+    if (posx>width-textWidth(c)|| c=='\n') { // umbruch vor Canvasende
       posx=0;
       posy+=lineheight+leading;
     }//end if

@@ -76,6 +76,12 @@ void draw() {
 
   for (int i=0; i<words.length; i++) {
     String word  = words[i]; 
+     
+      if (posx > width-textWidth(word)) { // umbruch vor Canvasende
+      posx=0;
+      posy+=lineheight+leading;
+    }
+    
     pushMatrix();
     translate(posx, posy);
     noStroke();
@@ -88,10 +94,7 @@ void draw() {
     posx+=textWidth(word);
     posx+=spacing;
 
-    if (posx > width-textWidth(word)) { // umbruch vor Canvasende
-      posx=0;
-      posy+=lineheight+leading;
-    }
+ 
   }
 }
 
@@ -107,5 +110,8 @@ void keyPressed() {
 
   if (key == '+') {
     leading++;
+  }
+  if (key == 's') {
+    words=sort(words);
   }
 }
